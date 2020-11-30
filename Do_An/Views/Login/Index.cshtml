@@ -1,0 +1,49 @@
+﻿@{ 
+    Layout = null;
+}
+@model Do_An.Frameworks.USER
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Assets/Customer/css/style.css">
+    <link rel="stylesheet" href="~/Assets/Customer/css/base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="login">
+        <div class="header">
+            <a href="Main.html" class="header__logo">Nologo</a>
+            <label>Login</label>
+        </div>
+        <div class="login__form">
+            @using (Html.BeginForm())
+            {
+                <h1 class="login__form-title">Login</h1>
+                <div class="login__form-input">
+                    <div>
+                        @Html.TextBoxFor(model =>model.UserN, new { @required = "required"})
+                        <div class="underline"></div>
+                        <label>Username</label>
+                    </div>
+                </div>
+                <div class="login__form-input">
+                    <div>
+                        @Html.TextBoxFor(model => model.PassW, new {@type = "password", @required = "required" })
+                        <div class="underline"></div>
+                        <label>Password</label>
+                    </div>
+                </div>
+                <div class="login__form-function">
+                    <u>@Html.ActionLink("Register", "Index", "Signup")</u>
+                    <a href=""><i>Forget password?</i></a>
+                </div>
+                <input type="submit" class="btn" value="Login">
+            }
+        </div>
+    </div>
+</body>
+</html>

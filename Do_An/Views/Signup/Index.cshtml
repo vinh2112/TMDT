@@ -1,0 +1,79 @@
+﻿@{
+    Layout = null;
+}
+@model Do_An.Models.UserModel 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Assets/Customer/css/style.css">
+    <link rel="stylesheet" href="~/Assets/Customer/css/base.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        *{
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup">
+        <div class="header">
+            <a href="Main.html" class="header__logo">Nologo</a>
+            <label>Sign up</label>
+        </div>
+
+        <div class="signup__form">
+            @using (Html.BeginForm())
+            {
+                <div class="signup__form-form">
+                    <h1>WELCOME TO MY STORE</h1>
+                    <h3>Sign up</h3>
+                    <div class="signup__form-info">
+                        <div class="signup__form-input">
+                            @Html.TextBoxFor(model => model.HoTen, new { @required = "required" })
+                            <div class="underline"></div>
+                            <label>Your Name</label>
+                        </div>
+                        <div class="signup__form-input">
+                            @Html.TextBoxFor(model => model.SDT, new { @required = "required" })
+                            <div class="underline"></div>
+                            <label>Your Phone</label>
+                        </div>
+                        <div class="signup__form-input">
+                            @Html.TextBoxFor(model => model.Email, new { @required = "required" })
+                            <div class="underline"></div>
+                            <label>Your Email</label>
+                        </div>
+                        <div class="signup__form-password">
+                            <div class="signup__form-input">
+                                @Html.PasswordFor(model => model.Passowrd, new { @required = "required" })
+                                <div class="underline"></div>
+                                <label>Password</label>
+                            </div>
+                            <div class="signup__form-input">
+                                @Html.PasswordFor(model => model.ReenterPassword, new { @required = "required" })
+                                <div class="underline"></div>
+                                <label>Re-enter Password</label>
+                            </div>
+                        </div>
+                        <div class="signup__form-input">
+                            @Html.TextBoxFor(model => model.DiaChi, new { @required = "required" })
+                            <div class="underline"></div>
+                            <label>Address</label>
+                        </div>
+                    </div>
+                </div>
+                @Html.ValidationSummary(true, "", new { @style="margin: 0 30px; font-size:20px"})
+                <div class="signup__form-function">
+                    @Html.ActionLink("Login", "Index", new { controller="Login" }, new { @class = "btn__Login"})
+                    <input class="btn__Signup" type="submit" value="Sign up" />
+                </div>
+            }
+
+        </div>
+        
+
+    </div>
+</body>
+</html>
