@@ -53,6 +53,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -3892,6 +3893,12 @@
     <Content Include="Areas\Admin\Views\Product\Insert.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Stored.cshtml" />
     <Content Include="Areas\Admin\Views\Brand\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Insert.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Insert.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Info.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Waiting.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3908,9 +3915,11 @@
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\DoanhThuController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Models\BrandModel.cs" />
     <Compile Include="Areas\Admin\Models\CategoryModel.cs" />
+    <Compile Include="Areas\Admin\Models\DoanhThuModel.cs" />
     <Compile Include="Areas\Admin\Models\OrderModel.cs" />
     <Compile Include="Areas\Admin\Models\ProductModel.cs" />
     <Compile Include="Areas\Admin\Models\CustomerModel.cs" />
@@ -3926,6 +3935,7 @@
     <Compile Include="Controllers\SignupController.cs" />
     <Compile Include="Frameworks\BRAND.cs" />
     <Compile Include="Frameworks\DANHMUC.cs" />
+    <Compile Include="Frameworks\DH_SP.cs" />
     <Compile Include="Frameworks\DONHANG.cs" />
     <Compile Include="Frameworks\GIOHANG.cs" />
     <Compile Include="Frameworks\INFORMATION.cs" />

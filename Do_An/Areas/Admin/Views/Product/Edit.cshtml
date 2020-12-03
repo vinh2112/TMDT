@@ -54,6 +54,17 @@
                             }
                         </select>
                     </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputCategory">Tình trạng</label>
+                        <select id="inputCategory" class="form-control" name="status">
+                            <option @if (item.TinhTrang == "Đang bán") { @Html.Encode("selected") ; } value="Đang bán">
+                                Hiện
+                            </option>
+                            <option @if (item.TinhTrang == "Đã ẩn") { @Html.Encode("selected") ; } value="Đã ẩn">
+                                Ẩn
+                            </option>
+                        </select>
+                    </div>
                 </div>
                 <div class="dropdown-divider"></div>
                 <div class="form-row">

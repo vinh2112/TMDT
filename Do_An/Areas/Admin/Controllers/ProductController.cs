@@ -64,14 +64,14 @@ namespace Do_An.Areas.Admin.Controllers
             }
             if (type == "success")
             {
-                TempData["Alert-Message"] = "Chỉnh sửa sản phẩm thành công";
+                TempData["Alert-Message"] = "Chỉnh sửa sản phẩm " + maSP +" thành công";
                 TempData["AlertType"] = "alert-success";
             }
             else
             {
                 if (type == "fail")
                 {
-                    TempData["Alert-Message"] = "Chỉnh sửa sản phẩm thất bại";
+                    TempData["Alert-Message"] = "Chỉnh sửa sản phẩm " + maSP + " thất bại";
                     TempData["AlertType"] = "alert-danger";
                 }
             }
@@ -85,11 +85,12 @@ namespace Do_An.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(SANPHAM product, HttpPostedFileBase file, string cates)
+        public ActionResult Edit(SANPHAM product, HttpPostedFileBase file, string cates, string status)
         {
             if (ModelState.IsValid)
             {
                 product.MaDM = cates;
+                product.TinhTrang = status;
                 if (file != null && file.ContentLength > 0)
                 {
                     string filename = System.IO.Path.GetFileName(file.FileName);
@@ -109,10 +110,21 @@ namespace Do_An.Areas.Admin.Controllers
             return View(product);
         }
         [HttpGet]
-        public ActionResult Delete(string maSP)
+        public ActionResult Delete(string maSP,string type)
         {
             var pro = new ProductModel();
-            pro.deleteProduct(maSP);
+            if (type == "Invisible")
+            {
+                pro.deleteProduct(maSP,type);
+                TempData["Alert-Message"] = "Ẩn sản phẩm " + maSP + " thành công";
+                TempData["AlertType"] = "alert-success";
+            }
+            else
+            {
+                pro.deleteProduct(maSP, type);
+                TempData["Alert-Message"] = "Hiện sản phẩm " + maSP + " thành công";
+                TempData["AlertType"] = "alert-success";
+            }
             return Redirect(Request.UrlReferrer.ToString());
         }
         public ActionResult Insert(string type = null)

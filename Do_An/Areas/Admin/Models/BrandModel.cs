@@ -42,5 +42,32 @@ namespace Do_An.Areas.Admin.Models
             catch { }
             return false;
         }
+        public bool insertBrand(BRAND entity)
+        {
+            bool check = false;
+            int maTH = 1;
+            while (!check)
+            {
+                if (maTH < 10)
+                {
+                    entity.MaTH = "TH0" + maTH.ToString();
+                }
+                else
+                {
+                    entity.MaTH = "TH" + maTH.ToString();
+                }
+                try
+                {
+                    db.BRANDs.Add(entity);
+                    db.SaveChanges();
+                    check = true;
+                    return true;
+                }
+                catch { }
+                maTH++;
+            }
+
+            return false;
+        }
     }
 }

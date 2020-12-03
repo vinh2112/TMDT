@@ -21,5 +21,9 @@ namespace Do_An.Areas.Admin.Models
         {
             return db.INFORMATION.Count().ToString();
         }
+        public IEnumerable<INFORMATION> infoCustomer(string SDT)
+        {
+            return db.INFORMATION.Where(x => x.SDT == SDT).OrderBy(x => x.TenKH);
+        }
     }
 }

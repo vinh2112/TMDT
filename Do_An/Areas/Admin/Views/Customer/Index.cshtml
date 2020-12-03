@@ -14,7 +14,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Thống Kê</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Thống kê</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -30,12 +30,12 @@
                 <tbody>
                     @foreach (var item in ViewBag.Customer)
                     {
-                    <tr>
-                        <td>@item.TenKH</td>
-                        <td>@item.SDT</td>
-                        <td>@item.DiaChi</td>
-                        <td>@item.Email</td>
-                    </tr>
+                        <tr>
+                            <td>@item.TenKH</td>
+                            <td><a href="@Url.Action("Info",new { SDT = item.SDT})">@item.SDT</a></td>
+                            <td>@item.DiaChi</td>
+                            <td>@item.Email</td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -44,7 +44,6 @@
 </div>
 
 @section scripts{
-
 }
 
 

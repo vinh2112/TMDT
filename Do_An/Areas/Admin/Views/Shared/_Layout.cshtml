@@ -19,6 +19,8 @@
     <!-- Custom styles for this template-->
     <link href="~/Assets/Admin/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="~/Assets/Admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    @RenderSection("scripts", required: false)
 </head>
 
 <body id="page-top" class="sidebar-toggled">
@@ -82,8 +84,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index",new { area = "Admin", controller = "Customer"})">
-                    <i class="fas fa-fw fa-table"></i>
+                <a class="nav-link" href="@Url.Action("Index",new { area = "Admin", controller = "Order"})">
+                    <i class="fas fa-clipboard-list"></i>
                     <span>Orders</span>
                 </a>
             </li>
@@ -381,7 +383,6 @@
         </div>
     </div>
 
-    @RenderSection("scripts", required: false)
     <!-- Bootstrap core JavaScript-->
     <script src="~/Assets/Admin/vendor/jquery/jquery.min.js"></script>
     <script src="~/Assets/Admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -53,12 +53,13 @@ namespace Do_An.Areas.Admin.Models
                     new SqlParameter("@Gia", entity.Gia*1000),
                     new SqlParameter("@HinhAnh", entity.HinhAnh),
                     new SqlParameter("@SoLuong", entity.SoLuong),
-                    new SqlParameter("@MaDM", entity.MaDM)
+                    new SqlParameter("@MaDM", entity.MaDM),
+                    new SqlParameter("@TinhTrang", entity.TinhTrang)
             };
             try
             {
 
-                db.Database.ExecuteSqlCommand("SuaSANPHAM @MaSP,@TenSP,@MauSac,@KichThuoc,@Gia,@HinhAnh,@SoLuong,@MaDM", sqlparams);
+                db.Database.ExecuteSqlCommand("SuaSANPHAM @MaSP,@TenSP,@MauSac,@KichThuoc,@Gia,@HinhAnh,@SoLuong,@MaDM,@TinhTrang", sqlparams);
                 return true;
             }
             catch { }
@@ -93,12 +94,19 @@ namespace Do_An.Areas.Admin.Models
             return false;
         }
 
-        public void deleteProduct(string maSP)
+        public void deleteProduct(string maSP,string type)
         {
             object sqlparam = new SqlParameter("@MaSP", maSP);
             try
             {
-                db.Database.ExecuteSqlCommand("XoaSANPHAM @MaSP", sqlparam);
+                if(type == "Invisible")
+                {
+                    db.Database.ExecuteSqlCommand("AnSANPHAM @MaSP", sqlparam);
+                }
+                else
+                {
+                    db.Database.ExecuteSqlCommand("HienSANPHAM @MaSP", sqlparam);
+                }
             }
             catch { }
         }

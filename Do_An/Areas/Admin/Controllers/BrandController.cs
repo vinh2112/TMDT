@@ -72,5 +72,59 @@ namespace Do_An.Areas.Admin.Controllers
             }
             return View(brand);
         }
+
+        public ActionResult Insert(string type = null)
+        {
+            if (Session["URL"] == null)
+            {
+                Session["URL"] = HttpContext.Request.UrlReferrer.AbsoluteUri.ToString();
+                ViewBag.URL = Session["URL"];
+            }
+            else
+            {
+                ViewBag.URL = Session["URL"];
+            }
+            if (type == "success")
+            {
+                TempData["Alert-Message"] = "Thêm sản phẩm thành công";
+                TempData["AlertType"] = "alert-success";
+            }
+            else
+            {
+                if (type == "fail")
+                {
+                    TempData["Alert-Message"] = "Thêm sản phẩm thất bại";
+                    TempData["AlertType"] = "alert-danger";
+                }
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Insert(BRAND entity, HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid)
+            {
+                if (file != null && file.ContentLength > 0)
+                {
+                    string filename = System.IO.Path.GetFileName(file.FileName);
+                    string urlfile = Server.MapPath("~/Images/" + filename);
+                    file.SaveAs(urlfile);
+
+                    entity.HinhAnh = "/Images/" + filename;
+                }
+
+                var th = new BrandModel();
+                bool res = th.insertBrand(entity);
+                if (res)
+                {
+                    return RedirectToAction("Insert", "Brand", new {type = "success" });
+                }
+                else
+                {
+                    return RedirectToAction("Insert", "Brand", new { type = "fail" });
+                }
+            }
+            return View(entity);
+        }
     }
 }

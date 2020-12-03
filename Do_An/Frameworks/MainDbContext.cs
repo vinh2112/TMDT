@@ -14,6 +14,7 @@ namespace Do_An.Frameworks
 
         public virtual DbSet<BRAND> BRANDs { get; set; }
         public virtual DbSet<DANHMUC> DANHMUCs { get; set; }
+        public virtual DbSet<DH_SP> DH_SP { get; set; }
         public virtual DbSet<DONHANG> DONHANGs { get; set; }
         public virtual DbSet<GIOHANG> GIOHANGs { get; set; }
         public virtual DbSet<INFORMATION> INFORMATION { get; set; }
@@ -22,6 +23,11 @@ namespace Do_An.Frameworks
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DONHANG>()
+                .HasMany(e => e.DH_SP)
+                .WithOptional(e => e.DONHANG)
+                .WillCascadeOnDelete();
+
             modelBuilder.Entity<INFORMATION>()
                 .HasMany(e => e.USERS)
                 .WithOptional(e => e.INFORMATION)
