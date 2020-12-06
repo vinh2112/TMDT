@@ -20,16 +20,6 @@
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(false);
-        <div class="header">
-            <a href="Main.html" class="logo">De Montre</a>
-            <div class="main__header-head">
-                <ul class="main__header-list">
-                    <li class="main__header-item icon"><a href=""><i class="header-icon far fa-question-circle"></i>Trợ giúp</a></li>
-                    <li class="main__header-item separate"><a href="Signup.html">Đăng ký</a></li>
-                    <li class="main__header-item"><a href="Login.html">Đăng nhập</a></li>
-                </ul>
-            </div>
-        </div>
         <div class="container" style="min-width:100%;">
             @{ int dem = 0;
                 foreach (var i in ViewBag.GioHang)
@@ -95,8 +85,6 @@
                         <div class="page__productlist-footer-note">
                             <div>Lời nhắn: </div>
                             @Html.TextBoxFor(m => m.ChuThich, new { @class = "page__productlist-footer-note input", @name = "TBluuY", @placeholder = "Lưu ý cho người bán" })
-                            @*<input class="page__productlist-footer-note input" type="text" name="TBluuY" placeholder="Lưu ý cho người bán">*@
-
                         </div>
                         <div class="page__productlist-footer-1">Thời gian vận chuyển</div>
                         <div class="page__productlist-footer-2">@String.Format("{0:dd/MM/yyyy}", DateTime.Now.AddDays(3)) - @String.Format("{0:dd/MM/yyyy}", DateTime.Now.AddDays(7))</div>
@@ -126,97 +114,17 @@
 
             </div>
         </div>
-        <footer class="footer">
-            <div class="gird">
-                <div class="gird_row gird_row2">
-                    <div style="margin-left:4%;" class="gird_column2-4">
-                        <h3 class="footer_heading"> CSKH</h3>
-                        <ul class="footer_heading-list">
-                            <li class="footer-item">
-                                <a href="" class="footer-link">Trung tâm giới thiệu</a>
-                            </li>
-                            <li class="footer-item">
-                                <a href="" class="footer-link">ClockID Mall</a>
-                            </li>
-                            <li class="footer-item">
-                                <a href="" class="footer-link">Hướng dẫn mua hàng</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="gird_column2-4">
-                        <h3 class="footer_heading">Thắc mắc</h3>
-                        <ul class="footer_heading-list">
-                            <li class="footer-item">
-                                <a href="" class="footer-link">Liên hệ với FB</a>
-                            </li>
-                            <li class="footer-item">
-                                <a href="" class="footer-link">Liên hệ với Instagram</a>
-
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="gird_column2-4">
-                        <h3 class="footer_heading">Theo dõi tôi trên</h3>
-                        <ul class="footer_heading-list">
-                            <li class="footer-item">
-                                <a href="" class="footer-link">
-                                    <i class="fab fa-facebook"></i>&nbsp; Facebook
-                                </a>
-                            </li>
-                            <li class="footer-item">
-                                <a href="" class="footer-link">
-                                    <i class="fab fa-instagram"></i> &nbsp; Instagram
-                                </a>
-                            </li>
-                            <li class="footer-item">
-                                <a href="" class="footer-link">
-                                    <i class="fab fa-twitter-square"></i>&nbsp; Twitter
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="gird_column2-4">
-                        <h3 class="footer_heading">Hổ trợ khách hàng</h3>
-                        <ul class="footer_heading-list">
-                            <li class="footer-item">
-                                <a href="" class="footer-link">Dịch vụ</a>
-                            </li>
-                            <li class="footer-item">
-                                <a href="" class="footer-link">Thái độ</a>
-
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="gird_column2-4 special">
-                        <h3 class="footer_heading">Truy cập ứng dụng</h3>
-                        <ul class="footer_heading-list">
-                            <li class="footer-item">
-                                <a href="" class="footer-link">Trung tâm giới thiệu</a>
-                            </li>
-                            <li class="footer-item">
-                                <a href="" class="footer-link">ClockID Mall</a>
-                            </li>
-                            <li class="footer-item">
-                                <a href="" class="footer-link">Hướng dẫn mua hàng</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!--Footer Wrapper-->
     }
 
     <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.6); display: none;" id="show-hide" onclick="show_hide_off()">
 
     </div>
+    @*form đổi địa chỉ*@
     <div id="show-hide1" style="display: none;">
-        <div class="login__form" style=" transform: translate(0%,-15%); bottom: 40%;">
+        <div class="login__form" style=" transform: translate(0%,-15%); bottom: 20%; color:black;">
             <h1 class="login__form-title" style="font-size: 24px;">Địa Chỉ giao hàng</h1>
             <div class="login__form-input">
                 <div>
-                    <!--@Html.TextBoxFor(model => model.SDT, new { @required = "required", @id = "text-SDT", @name = "SDT" })-->
                     <input type="text" required id="text-SDT" name="SDT">
                     <div class="underline"></div>
                     <label for="SDT">SDT</label>
@@ -224,7 +132,6 @@
             </div>
             <div class="login__form-input">
                 <div>
-                    <!--@Html.TextBoxFor(model => model.TenKH, new { @required = "required", @id = "text-Ten", @name = "TenKH" })-->
                     <input type="text" required id="text-Ten" name="TenKH">
                     <div class="underline"></div>
                     <label for="TenKH">Tên</label>
@@ -233,24 +140,23 @@
 
             <div class="login__form-input">
                 <div>
-                    <!--@Html.TextBoxFor(model => model.DiaChi, new { @required = "required", @id = "text-DiaChi", @name = "DiaChi" })-->
                     <input type="text" required id="text-DiaChi" name="DiaChi">
                     <div class="underline"></div>
                     <label for="DiaChi">Địa Chỉ</label>
                 </div>
             </div>
-            <input type="submit" class="btn" value="Xác Nhận" id="btnXacNhan" onclick="show_hide_off(), changeAddress()">
+            <input type="submit" class="btn" style="color:white; display: block; width: 300px; height: 45px; border-radius: 25px; border: none; outline: none; margin: 35px 50px; background-image: linear-gradient(to right, #FE3456, #A72D41, #FE3456); cursor: pointer; color: #fff; background-size: 200%; font-weight: 700; font-size: 20px; transition: 0.5s; text-transform: uppercase; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);" value="Xác Nhận" id="btnXacNhan" onclick="show_hide_off(), changeAddress()">
         </div>
     </div>
+    @*form phương thức thanh toán*@
     <div id="show-hide_1_1" style="display: none;">
-        <div class="login__form" style=" transform: translate(0%,-15%); height: 300px;  bottom:40%">
+        <div class="login__form" style=" transform: translate(0%,-15%); height: 300px;  bottom:30%; color:black;">
             <h1 class="login__form-title" style="font-size: 24px;">Phương Thức Giao Hàng</h1>
             <div style="display: flex; padding-top: 20px; justify-content:center; align-items: center; ">
                 <div style="font-size: 20px; margin: auto; justify-content: center;  padding-right: 48px;">
                     Thanh Toán Khi Nhận Sản Phẩm
                 </div>
                 <div style="width:20px; height:20px; margin: auto; justify-content: center;">
-                    <!--@Html.RadioButtonFor(model => model.PhuongThucTT, new { @value = "Thanh Toán Khi Nhận Sản Phẩm", @id = "COD", @style = " width: 100%; height: 1.6em;", @name = "rdo" })-->
                     <input type="radio" style=" width: 100%; height: 1.6em;" name="rdo" id="COD" />
                 </div>
             </div>
@@ -259,11 +165,10 @@
                     Thanh toán online(visa, mastercard,...)
                 </div>
                 <div style="width:20px; height:20px; margin: auto; justify-content: center;">
-                    <!--@Html.RadioButtonFor(model => model.PhuongThucTT, new { @value = "Thanh toán online(visa, mastercard,...)", @id="banking", @style = " width: 100%; height: 1.6em;", name = "rdo" })-->
                     <input type="radio" style=" width: 100%; height: 1.6em;" name="rdo" id="banking" />
                 </div>
             </div>
-            <input type="button" class="btn" style=" display: flex; justify-content: center;" value="Xác Nhận" id="btnXacNhan" onclick="show_hide_off(), changePTTT()" />
+            <input type="button" class="btn" style="color:white; display: block; width: 300px; height: 45px; border-radius: 25px; border: none; outline: none; margin: 35px 50px; background-image: linear-gradient(to right, #FE3456, #A72D41, #FE3456); cursor: pointer; color: #fff; background-size: 200%; font-weight: 700; font-size: 20px; transition: 0.5s; text-transform: uppercase; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);" value="Xác Nhận" id="btnXacNhan" onclick="show_hide_off(), changePTTT()" />
         </div>
     </div>
     <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
