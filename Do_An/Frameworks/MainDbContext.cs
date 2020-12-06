@@ -8,7 +8,7 @@ namespace Do_An.Frameworks
     public partial class MainDbContext : DbContext
     {
         public MainDbContext()
-            : base("name=MainDbContext")
+            : base("name=Connection")
         {
         }
 
