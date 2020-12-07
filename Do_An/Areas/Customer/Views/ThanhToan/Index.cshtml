@@ -112,7 +112,6 @@
             </div>
         </div>
     }
-
     <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.6); display: none;" id="show-hide" onclick="show_hide_off()">
 
     </div>
@@ -142,7 +141,7 @@
                     <label for="DiaChi">Địa Chỉ</label>
                 </div>
             </div>
-            <input type="submit" class="btn" style="color:white; display: block; width: 300px; height: 45px; border-radius: 25px; border: none; outline: none; margin: 35px 50px; background-image: linear-gradient(to right, #FE3456, #A72D41, #FE3456); cursor: pointer; color: #fff; background-size: 200%; font-weight: 700; font-size: 20px; transition: 0.5s; text-transform: uppercase; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);" value="Xác Nhận" id="btnXacNhan" onclick="show_hide_off(), changeAddress()">
+            <input type="submit" class="btn" style="color:white; display: block; width: 300px; height: 45px; border-radius: 25px; border: none; outline: none; margin: 35px 50px; background-image: linear-gradient(to right, #FE3456, #A72D41, #FE3456); cursor: pointer; color: #fff; background-size: 200%; font-weight: 700; font-size: 20px; transition: 0.5s; text-transform: uppercase; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);" value="Xác Nhận" id="btnXacNhan" onclick="changeAddress()">
         </div>
     </div>
     @*form phương thức thanh toán*@
@@ -165,7 +164,7 @@
                     <input type="radio" style=" width: 100%; height: 1.6em;" name="rdo" id="banking" />
                 </div>
             </div>
-            <input type="button" class="btn" style="color:white; display: block; width: 300px; height: 45px; border-radius: 25px; border: none; outline: none; margin: 35px 50px; background-image: linear-gradient(to right, #FE3456, #A72D41, #FE3456); cursor: pointer; color: #fff; background-size: 200%; font-weight: 700; font-size: 20px; transition: 0.5s; text-transform: uppercase; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);" value="Xác Nhận" id="btnXacNhan" onclick="show_hide_off(), changePTTT()" />
+            <input type="button" class="btn" style="color:white; display: block; width: 300px; height: 45px; border-radius: 25px; border: none; outline: none; margin: 35px 50px; background-image: linear-gradient(to right, #FE3456, #A72D41, #FE3456); cursor: pointer; color: #fff; background-size: 200%; font-weight: 700; font-size: 20px; transition: 0.5s; text-transform: uppercase; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);" value="Xác Nhận" id="btnXacNhan" onclick="changePTTT()" />
         </div>
     </div>
     <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
@@ -204,17 +203,38 @@
             }
         }
         function changeAddress() {
-            var txt = "+84 " + $("#text-SDT").val() + " " + $("#text-Ten").val() + " " + $("#text-DiaChi").val();
-            $("#Addres").text(txt);
-            $("#DiaChi").val(txt);
+            
+            var Ten = document.getElementById('text-Ten').value;
+            var SDT = document.getElementById('text-SDT').value;
+            var DiaChi = document.getElementById('text-DiaChi').value;
+
+            //Kiểm tra dữ liệu hợp lệ hay không
+            if (SDT == '') {
+                alert('Bạn chưa nhập số điện thoại');
+            }
+            else if (Ten == '') {
+                alert('Bạn chưa nhập tên');
+            }
+            else if (DiaChi == '') {
+                alert('Bạn chưa nhập địa chỉ');
+            }
+            else {
+                var txt = "+84 " + $("#text-SDT").val() + " " + $("#text-Ten").val() + " " + $("#text-DiaChi").val();
+                $("#Addres").text(txt);
+                $("#DiaChi").val(txt);
+                show_hide_off();
+                return true;
+            }
+
+            return false;
         }
         $(function () {
             $('#success-alert').removeClass('container');
             $('#success-alert').delay(5000).slideUp(500);
         }
         )
+
     </script>
 
 
 </body>
-</html>
