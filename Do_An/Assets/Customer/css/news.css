@@ -1,6 +1,8 @@
+
 .container__news{
     max-width: 71%;
     margin: 0 auto;
+    color: black;
 }
 
 .container__content-heading{
@@ -108,6 +110,7 @@
     line-height: 18px;
     font-size: 14px;
     margin-bottom: 10px;
+    color:black;
 }
 
 .news-btn{

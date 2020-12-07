@@ -144,7 +144,7 @@
     margin-right: 50px;
 }
 
-.btn{
+.my__btn{
     display: block;
     width: 300px;
     height: 45px;
@@ -186,7 +186,7 @@
 
 .signup__form-form h3{
     font-size: 25px;
-    font-weight: 50;
+    font-weight: 500;
     margin-bottom: 30px;
 }
 
@@ -776,4 +776,57 @@
 
 .main__footer-item p::selection{
     background-color: none;
+}
+/*CSS cua mini cart*/
+.cart-item {
+    width: 100%;
+    display: flex;
+    padding-right:5px;
+    padding-left:5px;
+    margin-bottom:15px;
+}
+
+.cart-item-img {
+    width: 13%;
+    height: 13%;
+    border: 1px solid rgba(0,0,0,0.3);
+}
+
+.cart-item-name {
+    color: rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    width: 60%;
+    padding-left:5px;
+}
+
+.cart-item-price {
+    display:flex;
+    width: 30%;
+    color: rgba(225,0,87,0.9);
+    justify-content:flex-end;
+}
+.cart-button {
+    display:flex;
+    padding-right: 5px;
+    align-items:flex-end;
+    justify-content:flex-end;
+}
+.cart-button-a{
+    background-color:rgba(225,0,87,0.9);
+    box-sizing:padding-box;
+    border:none;
+    border-radius:2px;
+    color:white;
+    cursor:pointer;
+
+}
+.cart-button-a:hover {
+    border: 1px solid rgba(225,0,87,0.9);
+    color: rgba(225,0,87,0.9);
+    background-color: white;
+    text-decoration:none;
 }

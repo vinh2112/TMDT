@@ -13,6 +13,8 @@ namespace Do_An.Areas.Customer.Controllers
         // GET: Customer/Home
         public ActionResult Index()
         {
+            TempData["Selected"] = "Main";
+            Session["Account"] = "asd";
             return View();
         }
     }

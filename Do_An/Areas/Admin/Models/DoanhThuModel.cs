@@ -25,7 +25,26 @@ namespace Do_An.Areas.Admin.Models
                 new SqlParameter("@Thang",month),
                 new SqlParameter("@Nam",year)
             };
-            return db.Database.SqlQuery<int>("DoanhThu @Thang,@Nam", sqlParams).SingleOrDefault().ToString();
+            try
+            {
+                return db.Database.SqlQuery<int>("DoanhThu @Thang,@Nam", sqlParams).SingleOrDefault().ToString();
+            }
+            catch { return "0"; }
+        }
+        public int DoanhThuThang(int month)
+        {
+            int year = DateTime.Now.Year;
+
+            object[] sqlParams =
+            {
+                new SqlParameter("@Thang",month),
+                new SqlParameter("@Nam",year)
+            };
+            try
+            {
+                return db.Database.SqlQuery<int>("DoanhThu @Thang,@Nam", sqlParams).SingleOrDefault();
+            }
+            catch { return 0; }
         }
     }
 }

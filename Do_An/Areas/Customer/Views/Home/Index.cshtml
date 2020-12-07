@@ -3,22 +3,27 @@
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
 
+@section Title{
+    <title>De Montre</title>
+}
+
 <div class="container__banner">
-    <a href="" class="container__banner-main"><img src="~/images/main-banner.jpg" alt=""></a>
+    <a href="@Url.Action("Index","Product")" class="container__banner-main"><img src="~/Images/main-banner.jpg" alt=""></a>
 
     <div class="container__banner-option">
         <div class="container__banner-man">
-            <a href="">
-                <img src="~/images/for-man.jpg" alt="">
+            <a href="@Url.Action("XemTheoDanhMuc","Product",new { MaDM = "DM01"})">
+                <img src="~/Images/for-man.jpg" alt="">
                 <label>Đồng hồ nam</label>
             </a>
         </div>
 
         <div class="container__banner-woman">
-            <a href="">
-                <img src="~/images/for-woman.jpg" alt="">
+            <a href="@Url.Action("XemTheoDanhMuc","Product",new { MaDM = "DM02"})">
+                <img src="~/Images/for-woman.jpg" alt="">
                 <label>Đồng hồ nữ</label>
             </a>
         </div>
     </div>
 </div>
+

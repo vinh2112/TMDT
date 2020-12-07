@@ -5,6 +5,13 @@
 .grid__column-9.grid__column-9-heading h1 {
     padding-top: 20px;
 }
+.over_grid{
+    font-size:30px;
+    color:rgba(0,0,0,0.7);
+    margin-left:14.3%;
+    padding-top:20px;
+    margin-right:14.3%;
+}
 
 .product-sort {
     width: 240px;
@@ -36,10 +43,9 @@
     text-decoration: none;
     color: black;
 }
-
 .product-item-img {
-    padding-top: 100%;
-    background-repeat: no-repeat;
+    width: 250px;
+    height: 250px;
 }
 
 .product-item-name {

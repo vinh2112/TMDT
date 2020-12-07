@@ -1,4 +1,5 @@
 ﻿using Do_An.Areas.Admin.Models;
+using Do_An.Frameworks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,5 +67,14 @@ namespace Do_An.Areas.Admin.Controllers
             TempData["AlertType"] = "alert-success";
             return Redirect(Request.UrlReferrer.ToString());
         }
+        public ActionResult ChangeInfo(string maDH,string DiaChi)
+        {
+            var order = new OrderModel();
+            order.chageInfo(maDH,DiaChi);
+            TempData["Alert-Message"] = "Thay đổi thông tin đơn hàng " + maDH + " thành công";
+            TempData["AlertType"] = "alert-success";
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
     }
 }

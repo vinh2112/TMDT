@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Do_An.Areas.Admin.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,14 @@ namespace Do_An.Areas.Admin.Controllers
         // GET: Admin/DoanhThu
         public ActionResult Index()
         {
+            var doanhthu = new DoanhThuModel();
+            List<int> doanhthuthang = new List<int>();
+            for(int i = 0; i < 12; i++ )
+            {
+                doanhthuthang.Add(doanhthu.DoanhThuThang(i + 1));
+            }
+            ViewBag.DoanhThu = doanhthuthang.ToList();
+
             return View();
         }
     }

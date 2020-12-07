@@ -23,11 +23,11 @@
             <div class="product-sort">
                 <p style="margin-bottom:0;">Sắp xếp theo</p>
 
-                <button class="btn btn-primary dropdown-toggle" style="background-color:#ffffff;color:#000000; border:1px solid rgba(0,0,0,0.7);width:140px; box-shadow:none;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Giá tăng dần
+                <button class="btn btn-primary dropdown-toggle" style="background-color:#ffffff;color:#000000; border:1px solid rgba(0,0,0,0.7); width:140px;box-shadow:none;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Giá giảm dần
                 </button>
                 <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="@Url.Action("Index")">Giá tăng dần</a>
+                    <a class="dropdown-item" href="@Url.Action("GiaCaoNhat")">Giá tăng dần</a>
                     <a class="dropdown-item" href="@Url.Action("GiaThapNhat")">Giá giảm dần</a>
                     <a class="dropdown-item" href="@Url.Action("Sale")">Khuyến mãi</a>
                 </div>
@@ -60,34 +60,32 @@
                     </div>
                 }
             </div>
-            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page}), new PagedListRenderOptions()
-       {
-           DisplayLinkToFirstPage = PagedListDisplayMode.Always,
-           DisplayLinkToLastPage = PagedListDisplayMode.Always,
-           DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
-           DisplayLinkToNextPage = PagedListDisplayMode.Always,
-           MaximumPageNumbersToDisplay = 10,
-           ContainerDivClasses = new string[] { "dataTables_paginate paging_simple_numbers" },
-           UlElementClasses = new string[] { "pagination justify-content-center ft-wpbs" },
-           LiElementClasses = new string[] { "page-item page-link" },
-           Display = PagedListDisplayMode.IfNeeded,
-       })
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions()
+          {
+              DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+              DisplayLinkToLastPage = PagedListDisplayMode.Always,
+              DisplayLinkToPreviousPage = PagedListDisplayMode.Always,
+              DisplayLinkToNextPage = PagedListDisplayMode.Always,
+              MaximumPageNumbersToDisplay = 10,
+              ContainerDivClasses = new string[] { "dataTables_paginate paging_simple_numbers" },
+              UlElementClasses = new string[] { "pagination justify-content-center" },
+              LiElementClasses = new string[] { "paginate_button page-item page-link" },
+              Display = PagedListDisplayMode.IfNeeded,
+          })
         </div>
     </div>
 </div>
-
 <a class="scroll-to-top rounded" href="#page-top" style="display: flex; align-items:center; justify-content:center; text-decoration:none;">
     <i class="fas fa-angle-up"></i>
 </a>
-
 @section Scripts{
     <script src="~/Assets/Admin/vendor/jquery/jquery.min.js"></script>
     <script src="~/Assets/Admin/vendor/jquery-easing/jquery.easing.min.js"></script>
     <link href="~/Assets/Admin/css/sb-admin-2.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Assets/Admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
     <!-- Core plugin JavaScript-->
     <script src="~/Assets/Admin/js/sb-admin-2.min.js"></script>
-
 }
 
 

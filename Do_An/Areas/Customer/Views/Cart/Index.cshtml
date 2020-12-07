@@ -1,8 +1,281 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
-<h2>Index</h2>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng</title>
+    <link rel="stylesheet" href="~/Assets/Customer/css/GioHang.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Assets/Customer/fonts/fontawesome-free-5.15.1-web/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="main__header">
+        <div class="main__header-head">
+            <ul class="main__header-list">
+                <li class="main__header-item icon"><a href=""><i class="header-icon far fa-question-circle"></i>Trợ giúp</a></li>
+                <li class="main__header-item separate"><a href="Signup.html">Ðăng ký</a></li>
+                <li class="main__header-item"><a href="Login.html">Ðăng nhập</a></li>
+            </ul>
+        </div>
+        <div class="main__header-container">
+            <div class="main__header-logo">
+                <a href="Main.html" class="logo">De Montre</a>
+            </div>
+
+            <div class="main__header-search">
+                <input type="checkbox" id="check-search">
+                <div class="search-box">
+                    <div class="search-txt-wrap">
+                        <input type="text" class="search-txt" placeholder="Tìm kiếm" required>
+
+                        <div class="search-history">
+                            <h3 class="search-history-heading">Lịch sử tìm kiếm</h3>
+                            <ul class="search-history-list">
+                                <li class="search-history-item">
+                                    <a href="">Ðồng hồ Daniel Wellington</a>
+                                </li>
+                                <li class="search-history-item">
+                                    <a href="">Casio</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <label for="check-search" class="search-btn"><i class="fas fa-search"></i></label>
+                </div>
+            </div>
+
+            <div class="main__header-cart">
+                <div class="main__header-cart-wrap">
+                    <a href="">
+                        <i class="header__cart-icon fas fa-shopping-cart"></i>
+                    </a>
+
+                    <div class="main__header-cart-list main__header-cart-list--no-cart">
+                        <img src="/images/no-cart.png" alt="" class="main__header-cart-no-cart-img">
+                        <p class="main__header-list-no-cart-msg">
+                            Chưa có sản phẩm
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (ViewBag.GioHang == null)
+    {
+        <div>
+            Gio hang trong
+        </div>
+    }
+    else
+    {
+        decimal total = 0; /*bientongcong*/
+        int i = 0;
+        <div class="container">
+            <div class="body">
+                <div class=body__header-name>
+                    Giỏ hàng của bạn
+                </div>
+                <div class="body__header-time">
+                    7:00
+                </div>
+                <div class="body__header">
+                    <div class="body__header-sanpham">Sản Phẩm</div>
+                    <div class="body__productlist-item heading">Đơn giá</div>
+                    <div class="body__productlist-item heading">Số lượng</div>
+                    <div class="body__productlist-item heading">Số tiền</div>
+                    <div class="body__productlist-item heading">Thao tác</div>
+                </div>
+                <div class="body__productlist">
+                    @foreach (var item in ViewBag.GioHang)
+                    {
+                        decimal tien = (decimal)item.ThanhTien;
+                        <div class="body__productlist-content">
+                            <div class="body__productlist-img">
+                                <a href="Add cai gi do vao day di" title="Dong Ho Mondre">
+                                    <img src="@item.SPimg" alt="">
+                                </a>
+                            </div>
+                            <div class="body__productlist-name">
+                                <a class="body__productlist-name-link" href="Add cai link gi xem lao`" title="@item.tenSP">
+                                    @item.tenSP
+                                </a>
+                            </div>
+                            <div class="body__productlist-item span-price">
+                                <span class="span-price">@String.Format("{0:n0}", item.DonGia)₫</span>
+                            </div>
+                            <div class="body__productlist-item">
+                                <button class="button__quantity" onclick="decrease_quantity(@item.STT,@item.DonGia)">-</button>
+                                <input class="body__productlist-item quantity" id="input_@item.STT" type="number" min="0" max="99" value=" @item.SoLuong">
+                                <button class="button__quantity" onclick="increase_quantity(@item.STT,@item.DonGia)">+</button>
+                            </div>
+                            <div class="body__productlist-item">
+                                <span class="span-price" id="tongtien_@item.STT"> @String.Format("{0:n0}", item.tien)đ</span>
+                            </div>
+                            <div class="body__productlist-item">
+                                <a style="color:black" href="@Url.Action("XoaKhoiGio",new {@sdt=item.SDT, @MaSP=item.MaSP })">
+                                    <i class="icon_size fas fa-trash-alt "></i>
+                                </a>
+
+                            </div>
+                        </div>
+                        total = total + (decimal)item.ThanhTien;    
+                    }
+
+
+
+                </div>
+                <div class="body__footer ">
+                    <div class="body__footer__row1 ">
+                        VND <p id="tienhang">@total</p> Tổng tiền hàng (@i.ToString() sản phẩm ):
+                    </div>
+                    <div class="body__footer__row2 ">
+                        <a href="@Url.Action("QuayVe")" class="body__footer__row2-check one">Tiếp tục mua hàng</a>
+                        <a href="@Url.Action("Index","THANHTOAN")" class="body__footer__row2-check two ">Mua hàng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    <!--footer-->
+    <footer class="footer">
+        <div class="gird">
+            <div class="gird_row gird_row2">
+                <div style="margin-left:4%;" class="gird_column2-4">
+                    <h3 class="footer_heading"> CSKH</h3>
+                    <ul class="footer_heading-list">
+                        <li class="footer-item">
+                            <a href="" class="footer-link">Trung tâm giới thiệu</a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="" class="footer-link">ClockID Mall</a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="" class="footer-link">Hướng dẫn mua hàng</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="gird_column2-4">
+                    <h3 class="footer_heading">Thắc mắc</h3>
+                    <ul class="footer_heading-list">
+                        <li class="footer-item">
+                            <a href="" class="footer-link">Liên hệ với FB</a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="" class="footer-link">Liên hệ với Instagram</a>
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="gird_column2-4">
+                    <h3 class="footer_heading">Theo dõi tôi trên</h3>
+                    <ul class="footer_heading-list">
+                        <li class="footer-item">
+                            <a href="" class="footer-link">
+                                <i class="fab fa-facebook"></i> Facebook
+                            </a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="" class="footer-link">
+                                <i class="fab fa-instagram"></i> Instagram
+                            </a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="" class="footer-link">
+                                <i class="fab fa-twitter-square"></i>Twitter
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="gird_column2-4">
+                    <h3 class="footer_heading">Hổ trợ khách hàng</h3>
+                    <ul class="footer_heading-list">
+                        <li class="footer-item">
+                            <a href="" class="footer-link">Dịch vụ</a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="" class="footer-link">Thái độ</a>
+
+                        </li>
+                    </ul>
+                </div>
+                <div class="gird_column2-4 special">
+                    <h3 class="footer_heading">Truy cập ứng dụng</h3>
+                    <ul class="footer_heading-list">
+                        <li class="footer-item">
+                            <a href="" class="footer-link">Trung tâm giới thiệu</a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="" class="footer-link">ClockID Mall</a>
+                        </li>
+                        <li class="footer-item">
+                            <a href="" class="footer-link">Hướng dẫn mua hàng</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Footer Wrapper-->
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript">
+        function increase_quantity(STT,DonGia) {
+            var inputQuantity = $("#input_" + STT).attr("value");
+            var value = parseInt(inputQuantity)+1;
+            $("#input_" + STT).attr("value", value);
+            $("#tongtien_" + STT).text(DonGia * value + ' ₫');
+            tienlen(DonGia);
+            save_to_db(STT, value);
+
+        }
+        function decrease_quantity(STT,DonGia) {
+            var inputQuantity = $("#input_" + STT).attr("value");
+            var value = parseInt(inputQuantity);
+            if (value > 1) {
+                value = value - 1;
+                $("#input_" + STT).attr("value", value);
+                $("#tongtien_" + STT).text(DonGia * value + ' ₫');
+                tienxuong(DonGia);
+                save_to_db(STT, value);
+            }
+
+        }
+        function tienlen(tienthem) {
+            var tongtien = $("#tienhang").text();
+            tongtien = parseInt(tongtien);
+            tongtien = tongtien + tienthem;
+            $("#tienhang").text(tongtien);
+        }
+        function tienxuong(tienthem) {
+            var tongtien = $("#tienhang").text();
+            tongtien = parseInt(tongtien);
+            tongtien = tongtien - tienthem;
+            $("#tienhang").text(tongtien);
+
+        }
+        function save_to_db(STT, soluong) {
+            $.ajax({
+                url: '@Url.Action("SuaSoLuong","Cart")',
+                data: { STT: STT, SoLuong: soluong },
+                type: "POST",
+                success: function () {
+                    alert("thanhcong");
+                },
+                error: function () {
+                    alert("thatbai")
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
 

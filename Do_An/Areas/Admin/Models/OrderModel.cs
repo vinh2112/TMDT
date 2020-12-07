@@ -60,6 +60,20 @@ namespace Do_An.Areas.Admin.Models
             catch { }
             return false;
         }
-
+        public bool chageInfo(string MaDH, string DiaChi)
+        {
+            object[] sqlparams =
+            {
+                new SqlParameter("@MaDH",MaDH),
+                new SqlParameter("@DiaChi",DiaChi)
+            };
+            try
+            {
+                db.Database.ExecuteSqlCommand("changeDonHang @MaDH,@DiaChi", sqlparams);
+                return true;
+            }
+            catch { }
+            return false;
+        }
     }
 }

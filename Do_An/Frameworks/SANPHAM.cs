@@ -47,6 +47,7 @@ namespace Do_An.Frameworks
 
         [StringLength(50)]
         public string TinhTrang { get; set; }
+        public int Discount { get; set; }
 
         public virtual BRAND BRAND { get; set; }
 

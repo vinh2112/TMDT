@@ -13,6 +13,7 @@ namespace Do_An.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
+            
             CustomerModel cus = new CustomerModel();
             ProductModel pro = new ProductModel();
             OrderModel ord = new OrderModel();
@@ -21,6 +22,12 @@ namespace Do_An.Areas.Admin.Controllers
             string product = pro.countProduct();
             string order = ord.countOrder();
             string dt = doanhthu.DoanhThu();
+            List<int> doanhthuthang = new List<int>();
+            for (int i = 0; i < 12; i++)
+            {
+                doanhthuthang.Add(doanhthu.DoanhThuThang(i + 1));
+            }
+            ViewBag.DoanhThuThang = doanhthuthang.ToList();
             ViewBag.countCus = customer;
             ViewBag.countPro = product;
             ViewBag.countOrder = order;
