@@ -64,7 +64,7 @@ namespace Do_An.Areas.Customer.Controllers
                     if (pttt == "Thanh toán khi nhận hàng")
                     {
                         if (CheckSL(temp))
-                            dh.Mua_Update(sdt, diachi, donhang.ChuThich);
+                            dh.Mua_Update(sdt, diachi, Convert.ToInt32(ViewBag.ThanhToan), donhang.ChuThich);
                     }
                     else
                     {
@@ -73,7 +73,8 @@ namespace Do_An.Areas.Customer.Controllers
                             Configuration.SDT = sdt;
                             Configuration.DiaChi = diachi;
                             Configuration.ChuThich = donhang.ChuThich;
-                            return RedirectToAction("PaymentWithPaypal", "Pay", new { @sdt = sdt, @diachi = diachi, @chuthich = donhang.ChuThich });
+                            Configuration.tong = Convert.ToInt32(ViewBag.ThanhToan);
+                            return RedirectToAction("PaymentWithPaypal", "Pay", new { @sdt = sdt });
                         }
                     }
                 }

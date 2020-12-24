@@ -58,7 +58,7 @@ namespace Do_An.Areas.Customer.Models
             }
             return madh;
         }
-        public void Mua_Update(string SDT, string DiaChi, string chuthich="không có")
+        public void Mua_Update(string SDT, string DiaChi, int tongtien, string chuthich="không có")
         {
             //tạo mã đơn hàng tự động
             string madh = TaoMaDH();
@@ -68,19 +68,23 @@ namespace Do_An.Areas.Customer.Models
                 madh = TaoMaDH();
                 item = from a in cn.DONHANGs where a.MaDH == madh select a;
             }
-
-            //
-            var prmt = new SqlParameter[]
-                {
-                             new SqlParameter("@MaDH", madh),
-                             new SqlParameter("@SDT", SDT),
-                             new SqlParameter("@DiaChi", DiaChi),
-                             new SqlParameter("@TinhTrang", "Đang Chờ"),
-                             new SqlParameter("@ChuThich", chuthich)
-                };
-            cn.DONHANGs.SqlQuery("ThemDONHANG @MaDH, @SDT, @DiaChi, @TinhTrang, @ChuThich", prmt).ToList();
+            SqlParameter MaDH = new SqlParameter("@MaDH", madh);
+            SqlParameter sdt = new SqlParameter("@SDT", SDT);
+            SqlParameter diachi = new SqlParameter("@DiaChi", DiaChi);
+            SqlParameter ttrang = new SqlParameter("@TinhTrang", "Đang Chờ");
+            SqlParameter chut = new SqlParameter("@chuthich", chuthich);
+            SqlParameter tong = new SqlParameter("@TongTien", tongtien);
+            SqlCommand cmd = new SqlCommand("insert into DONHANG(MaDH, SDT, DiaChi,NgayThang,TinhTrang,ChuThich, TongTien) values(@MaDH, @SDT, @DiaChi, GETDATE(), @TinhTrang, @chuthich,@TongTien)", conn);
+            cmd.Parameters.Add(MaDH);
+            cmd.Parameters.Add(sdt);
+            cmd.Parameters.Add(diachi);
+            cmd.Parameters.Add(ttrang);
+            cmd.Parameters.Add(chut);
+            cmd.Parameters.Add(tong);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
             XoaSPDaMua(SDT);
-
         }
         public void XoaSPDaMua(string SDT)
         {

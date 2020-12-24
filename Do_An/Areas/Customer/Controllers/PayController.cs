@@ -19,7 +19,7 @@ namespace Do_An.Areas.Customer.Controllers
             return View();
         }
 
-        public ActionResult PaymentWithPaypal(string sdt, string diachi, string chuthich)
+        public ActionResult PaymentWithPaypal(string sdt)
         {
             
             //getting the apiContext  
@@ -76,7 +76,7 @@ namespace Do_An.Areas.Customer.Controllers
                 return RedirectToAction("Index", "ThanhToan");
             }
             //on successful payment, show success page to user.  
-            donhang.Mua_Update(Configuration.SDT, Configuration.DiaChi, Configuration.ChuThich);
+            donhang.Mua_Update(Configuration.SDT, Configuration.DiaChi,Configuration.tong, Configuration.ChuThich);
             return RedirectToAction("Index", "ThanhToan");
         }
         private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)

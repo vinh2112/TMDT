@@ -12,7 +12,8 @@ namespace Do_An.Areas.Customer.helper
         //by reading them from the web.config
         public readonly static string ClientId;
         public readonly static string ClientSecret;
-        public static string SDT, DiaChi, ChuThich; 
+        public static string SDT, DiaChi, ChuThich;
+        public static int tong;
 
         static Configuration()
         {

@@ -117,7 +117,7 @@
     </div>
     @*form đổi địa chỉ*@
     <div id="show-hide1" style="display: none;">
-        <div class="login__form" style=" transform: translate(0%,-15%); bottom: 20%; color:black;">
+        <div class="login__form" style=" transform: translate(0%,-15%); top: 30%; color:black;">
             <h1 class="login__form-title" style="font-size: 24px;">Địa Chỉ giao hàng</h1>
             <div class="login__form-input">
                 <div>
@@ -146,7 +146,7 @@
     </div>
     @*form phương thức thanh toán*@
     <div id="show-hide_1_1" style="display: none;">
-        <div class="login__form" style=" transform: translate(0%,-15%); height: 300px;  bottom:30%; color:black;">
+        <div class="login__form" style=" transform: translate(0%,-15%); height: 300px;  top:30%; color:black;">
             <h1 class="login__form-title" style="font-size: 24px;">Phương Thức Giao Hàng</h1>
             <div style="display: flex; padding-top: 20px; justify-content:center; align-items: center; ">
                 <div style="font-size: 20px; margin: auto; justify-content: center;  padding-right: 48px;">
@@ -187,8 +187,6 @@
 
             document.getElementById("show-hide").style.display = "block";
             document.getElementById("show-hide_1_1").style.display = "block";
-
-
         }
         function changePTTT() {
             var value1 = $("#COD").prop("checked")
@@ -201,6 +199,8 @@
                 $("#paymethod").text("Thanh toán online(visa, mastercard, ...)");
                 $("#payy").val("Thanh toán online(visa, mastercard, ...)");
             }
+            document.getElementById("show-hide").style.display = "none";
+            document.getElementById("show-hide_1_1").style.display = "none";
         }
         function changeAddress() {
             
